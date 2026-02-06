@@ -1,0 +1,28 @@
+# Meta-Analysis Human-AI Collaboration
+# Python dependencies
+
+# Core data processing
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0  # For reading Excel files
+
+# Statistical analysis
+scipy>=1.10.0
+statsmodels>=0.14.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Optional: Additional meta-analysis packages
+# pingouin>=0.5.3  # For additional statistical tests
+# PyMARE>=0.0.4    # Meta-analysis in Python (alternative)
+
+# Jupyter support
+jupyter>=1.0.0
+ipykernel>=6.0.0
+notebook>=7.0.0
+
+# Optional: For enhanced output in notebooks
+tabulate>=0.9.0  # Pretty tables
+tqdm>=4.65.0     # Progress bars
