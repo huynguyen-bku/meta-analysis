@@ -1,0 +1,96 @@
+# 04 — Moderator Analysis Insights
+
+Generated: 2026-02-11 04:39:27
+
+## Moderator: Industry
+
+- Q-between p = 0.0000 (***)
+- Strong Synergy / Business: g = -0.926 [-1.230, -0.623] ***, k=46
+- Strong Synergy / Communication: g = -0.487 [-0.774, -0.199] ***, k=86
+- Strong Synergy / Healthcare: g = -0.306 [-0.484, -0.128] ***, k=107
+- Strong Synergy / Public sector: g = -0.703 [-0.958, -0.447] ***, k=39
+- Human Augmentation / Business: g = +0.706 [0.577, 0.835] ***, k=46
+- Human Augmentation / Communication: g = +0.276 [0.191, 0.360] ***, k=86
+- Human Augmentation / Healthcare: g = +0.632 [0.517, 0.747] ***, k=107
+- Human Augmentation / Public sector: g = +0.428 [0.284, 0.573] ***, k=39
+- AI Augmentation / Business: g = -0.732 [-1.100, -0.364] ***, k=46
+- AI Augmentation / Communication: g = +1.011 [0.553, 1.468] ***, k=86
+- AI Augmentation / Healthcare: g = +0.087 [-0.133, 0.308] ns, k=107
+- AI Augmentation / Public sector: g = -0.581 [-0.881, -0.282] ***, k=39
+
+## Moderator: Task_Type
+
+- Q-between p = 0.0000 (***)
+- Strong Synergy / Create: g = +0.372 [-0.024, 0.767] ns, k=26
+- Strong Synergy / Decide: g = -0.619 [-0.754, -0.484] ***, k=252
+- Human Augmentation / Create: g = +0.467 [0.195, 0.738] ***, k=26
+- Human Augmentation / Decide: g = +0.496 [0.434, 0.559] ***, k=252
+- AI Augmentation / Create: g = +1.114 [0.755, 1.473] ***, k=26
+- AI Augmentation / Decide: g = +0.043 [-0.155, 0.242] ns, k=252
+
+## Moderator: AI_Type_Cleaned
+
+- Q-between p = 0.0000 (***)
+- Strong Synergy / Deep: g = -0.204 [-0.403, -0.005] *, k=132
+- Strong Synergy / Rule-Based: g = -1.247 [-1.473, -1.021] ***, k=52
+- Strong Synergy / Shallow: g = -0.506 [-0.745, -0.268] ***, k=46
+- Strong Synergy / Simulated-AI: g = -1.290 [-1.911, -0.670] ***, k=12
+- Strong Synergy / Wizard of Oz: g = -0.435 [-0.726, -0.143] **, k=36
+- Human Augmentation / Deep: g = +0.396 [0.315, 0.477] ***, k=132
+- Human Augmentation / Rule-Based: g = +0.559 [0.439, 0.679] ***, k=52
+- Human Augmentation / Shallow: g = +0.443 [0.301, 0.586] ***, k=46
+- Human Augmentation / Simulated-AI: g = +0.673 [0.392, 0.954] ***, k=12
+- Human Augmentation / Wizard of Oz: g = +0.734 [0.522, 0.946] ***, k=36
+- AI Augmentation / Deep: g = +0.920 [0.593, 1.246] ***, k=132
+- AI Augmentation / Rule-Based: g = -0.876 [-1.185, -0.568] ***, k=52
+- AI Augmentation / Shallow: g = -0.362 [-0.640, -0.084] *, k=46
+- AI Augmentation / Simulated-AI: g = -1.272 [-1.896, -0.649] ***, k=12
+- AI Augmentation / Wizard of Oz: g = -0.144 [-0.507, 0.219] ns, k=36
+
+## Moderator: Participant_Expert
+
+- Q-between p = 0.0000 (***)
+- Strong Synergy / No: g = -0.648 [-0.809, -0.486] ***, k=182
+- Strong Synergy / Yes: g = -0.278 [-0.472, -0.084] **, k=96
+- Human Augmentation / No: g = +0.455 [0.385, 0.526] ***, k=182
+- Human Augmentation / Yes: g = +0.595 [0.482, 0.708] ***, k=96
+- AI Augmentation / No: g = +0.169 [-0.068, 0.406] ns, k=182
+- AI Augmentation / Yes: g = +0.052 [-0.169, 0.274] ns, k=96
+
+## Moderator: AI_Expl_Incl
+
+- Q-between p = 0.0000 (***)
+- Strong Synergy / No: g = -0.611 [-0.800, -0.422] ***, k=115
+- Strong Synergy / Yes: g = -0.471 [-0.652, -0.289] ***, k=163
+- Human Augmentation / No: g = +0.515 [0.420, 0.610] ***, k=115
+- Human Augmentation / Yes: g = +0.478 [0.400, 0.556] ***, k=163
+- AI Augmentation / No: g = -0.009 [-0.265, 0.248] ns, k=115
+- AI Augmentation / Yes: g = +0.249 [-0.025, 0.522] ns, k=163
+
+## Moderator: Year
+
+- Q-between p = 0.0000 (***)
+- Strong Synergy / 2020: g = -0.835 [-1.117, -0.554] ***, k=62
+- Strong Synergy / 2021: g = -0.558 [-0.764, -0.351] ***, k=93
+- Strong Synergy / 2022: g = -0.634 [-0.946, -0.323] ***, k=65
+- Strong Synergy / 2023: g = +0.013 [-0.271, 0.298] ns, k=54
+- Strong Synergy / 2024: g = -0.665 [-1.234, -0.097] *, k=4
+- Human Augmentation / 2020: g = +0.404 [0.280, 0.528] ***, k=62
+- Human Augmentation / 2021: g = +0.445 [0.350, 0.539] ***, k=93
+- Human Augmentation / 2022: g = +0.450 [0.321, 0.580] ***, k=65
+- Human Augmentation / 2023: g = +0.757 [0.603, 0.911] ***, k=54
+- Human Augmentation / 2024: g = +0.600 [0.367, 0.832] ***, k=4
+- AI Augmentation / 2020: g = -0.103 [-0.598, 0.393] ns, k=62
+- AI Augmentation / 2021: g = -0.118 [-0.374, 0.137] ns, k=93
+- AI Augmentation / 2022: g = +0.616 [0.104, 1.127] *, k=65
+- AI Augmentation / 2023: g = +0.283 [-0.040, 0.606] ns, k=54
+- AI Augmentation / 2024: g = -0.665 [-1.234, -0.097] *, k=4
+
+## Significant Moderators
+
+- Industry (Q-between p = 0.0000)
+- Task_Type (Q-between p = 0.0000)
+- AI_Type_Cleaned (Q-between p = 0.0000)
+- Participant_Expert (Q-between p = 0.0000)
+- AI_Expl_Incl (Q-between p = 0.0000)
+- Year (Q-between p = 0.0000)
