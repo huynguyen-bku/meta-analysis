@@ -244,7 +244,7 @@ def plot_subgroup_forest(results_df, comparison_name, filename):
     if len(results_df) == 0:
         return
 
-    fig, ax = plt.subplots(figsize=(12, max(6, len(results_df) * 0.4)))
+    fig, ax = plt.subplots(figsize=(13, max(6.5, len(results_df) * 0.45)))
 
     y_pos = np.arange(len(results_df))
 
@@ -278,14 +278,18 @@ def plot_subgroup_forest(results_df, comparison_name, filename):
     ax.set_yticks(y_pos)
     ax.set_yticklabels(labels)
     ax.set_xlabel("Effect Size (Hedges' g)", fontsize=12)
-    ax.set_title(f"Subgroup Analysis: {comparison_name}", fontsize=14, fontweight='bold')
-    ax.set_xlim(-1.5, 1.5)
+    ax.set_title(f"Subgroup Analysis: {comparison_name}", fontsize=14, fontweight='bold', pad=10)
+    ci_min = results_df['CI_lower'].min()
+    ci_max = results_df['CI_upper'].max()
+    pad = max(0.12, 0.08 * (ci_max - ci_min))
+    ax.set_xlim(ci_min - pad, ci_max + pad)
 
     # Add text for effect sizes
     for i, (_, row) in enumerate(results_df.iterrows()):
-        ax.text(1.2, i, f"g={row['g']:.2f}", va='center', fontsize=9)
+        x_pos = row['CI_upper'] + 0.04
+        ax.text(x_pos, i, f"g={row['g']:.2f}", va='center', ha='left', fontsize=8.5)
 
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.02, 1, 1])
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Saved: {filename}")
@@ -300,7 +304,7 @@ def plot_moderator_comparison(results_df, moderator, filename):
     if len(mod_data) == 0:
         return
 
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+    fig, axes = plt.subplots(1, 3, figsize=(17, 5.8))
 
     comparisons = ['Human Augmentation', 'AI Augmentation', 'Strong Synergy']
     titles = ['HAI vs Human', 'HAI vs AI', 'HAI vs max(H,AI)']
@@ -327,15 +331,22 @@ def plot_moderator_comparison(results_df, moderator, filename):
 
         ax.axvline(0, color='black', linestyle='--', linewidth=1)
         ax.set_xlabel("Hedges' g")
-        ax.set_title(title, fontweight='bold')
+        ax.set_title(title, fontweight='bold', pad=8)
 
         # Add significance markers
         for i, (_, row) in enumerate(data.iterrows()):
-            x_pos = row['g'] + 0.05 if row['g'] > 0 else row['g'] - 0.15
-            ax.text(x_pos, i, row['sig'], va='center', fontsize=10, fontweight='bold')
+            x_margin = 0.06
+            x_pos = row['CI_upper'] + x_margin if row['g'] >= 0 else row['CI_lower'] - x_margin
+            ha = 'left' if row['g'] >= 0 else 'right'
+            ax.text(x_pos, i, row['sig'], va='center', ha=ha, fontsize=10, fontweight='bold')
+
+        ci_min = data['CI_lower'].min()
+        ci_max = data['CI_upper'].max()
+        pad = max(0.12, 0.08 * (ci_max - ci_min))
+        ax.set_xlim(ci_min - pad, ci_max + pad)
 
     plt.suptitle(f"Effect Sizes by {moderator}", fontsize=14, fontweight='bold')
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Saved: {filename}")
@@ -367,18 +378,18 @@ def create_summary_heatmap(all_results, filename):
     heatmap_data = pivot_df.pivot(index='Moderator_Group', columns='Comparison', values='g')
 
     # Create figure
-    fig, ax = plt.subplots(figsize=(10, max(8, len(heatmap_data) * 0.3)))
+    fig, ax = plt.subplots(figsize=(11.5, max(8.5, len(heatmap_data) * 0.34)))
 
     # Heatmap
     sns.heatmap(heatmap_data, annot=True, fmt='.2f', cmap='RdYlGn', center=0,
                 vmin=-1, vmax=1, ax=ax, linewidths=0.5,
                 cbar_kws={'label': "Hedges' g"})
 
-    ax.set_title('Summary Heatmap: Effect Sizes by Subgroups', fontsize=14, fontweight='bold')
+    ax.set_title('Summary Heatmap: Effect Sizes by Subgroups', fontsize=14, fontweight='bold', pad=10)
     ax.set_xlabel('')
     ax.set_ylabel('')
 
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.02, 1, 1])
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Saved: {filename}")

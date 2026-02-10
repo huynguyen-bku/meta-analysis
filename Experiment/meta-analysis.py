@@ -335,7 +335,7 @@ def create_forest_plot(effect_sizes, variances, title, filename, pooled_result):
 
     k = len(es)
 
-    fig, ax = plt.subplots(figsize=(10, max(8, k * 0.15)))
+    fig, ax = plt.subplots(figsize=(11.5, max(8, k * 0.18)))
 
     y_pos = np.arange(k)
     colors = ['darkgreen' if e > 0 else 'darkred' for e in es]
@@ -355,7 +355,7 @@ def create_forest_plot(effect_sizes, variances, title, filename, pooled_result):
     ax.axvspan(0, 6, alpha=0.05, color='green')
 
     ax.set_xlabel("Effect Size (Hedges' g)", fontsize=12)
-    ax.set_title(title, fontsize=14, fontweight='bold')
+    ax.set_title(title, fontsize=14, fontweight='bold', pad=10)
     ax.set_xlim(-4, 4)
     ax.set_yticks([])
 
@@ -369,12 +369,18 @@ def create_forest_plot(effect_sizes, variances, title, filename, pooled_result):
             horizontalalignment='right', color='darkgreen')
 
     if pooled_result:
-        pooled_text = f"Pooled: g = {pooled_result['estimate']:.3f} [{pooled_result['ci_lower']:.3f}, {pooled_result['ci_upper']:.3f}]"
-        ax.text(0.5, 0.02, pooled_text, transform=ax.transAxes, fontsize=11,
-                horizontalalignment='center', fontweight='bold',
-                bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        pooled_text = (
+            f"Pooled: g = {pooled_result['estimate']:.3f} "
+            f"[{pooled_result['ci_lower']:.3f}, {pooled_result['ci_upper']:.3f}]"
+        )
+        ax.text(
+            0.5, -0.10, pooled_text, transform=ax.transAxes, fontsize=10.5,
+            horizontalalignment='center', fontweight='bold',
+            bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+        )
+        ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.18), frameon=True, ncol=1)
 
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.06, 1, 1])
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Forest plot saved: {filename}")
@@ -388,9 +394,9 @@ def create_funnel_plot(effect_sizes, variances, title, filename, pooled_estimate
     es = effect_sizes[mask]
     se = np.sqrt(variances[mask])
 
-    fig, ax = plt.subplots(figsize=(10, 8))
+    fig, ax = plt.subplots(figsize=(11, 8.5))
 
-    ax.scatter(es, se, c='#0072B2', alpha=0.6, s=30)
+    ax.scatter(es, se, c='#0072B2', alpha=0.6, s=35, label=f"Studies (k={len(es)})")
     ax.axvline(pooled_estimate, color='red', linestyle='--', linewidth=2,
                label=f'Pooled estimate = {pooled_estimate:.3f}')
 
@@ -406,10 +412,10 @@ def create_funnel_plot(effect_sizes, variances, title, filename, pooled_estimate
 
     ax.set_xlabel("Effect Size (Hedges' g)", fontsize=12)
     ax.set_ylabel("Standard Error", fontsize=12)
-    ax.set_title(title, fontsize=14, fontweight='bold')
-    ax.legend(loc='upper right')
+    ax.set_title(title, fontsize=14, fontweight='bold', pad=10)
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12), ncol=2, frameon=True)
 
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Funnel plot saved: {filename}")

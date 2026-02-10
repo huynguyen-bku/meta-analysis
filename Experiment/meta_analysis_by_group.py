@@ -221,7 +221,7 @@ def create_forest_plot(effect_sizes, variances, title, filename, pooled_result):
 
     k = len(es)
 
-    fig, ax = plt.subplots(figsize=(10, max(6, k * 0.2)))
+    fig, ax = plt.subplots(figsize=(11.5, max(6.5, k * 0.22)))
 
     y_pos = np.arange(k)
     colors = ['darkgreen' if e > 0 else 'darkred' for e in es]
@@ -241,7 +241,7 @@ def create_forest_plot(effect_sizes, variances, title, filename, pooled_result):
     ax.axvspan(0, 6, alpha=0.05, color='green')
 
     ax.set_xlabel("Effect Size (Hedges' g)", fontsize=12)
-    ax.set_title(title, fontsize=14, fontweight='bold')
+    ax.set_title(title, fontsize=14, fontweight='bold', pad=10)
     ax.set_xlim(-4, 4)
     ax.set_yticks([])
 
@@ -255,12 +255,16 @@ def create_forest_plot(effect_sizes, variances, title, filename, pooled_result):
             horizontalalignment='right', color='darkgreen')
 
     if pooled_result:
-        pooled_text = f"Pooled: g = {pooled_result['estimate']:.3f} [{pooled_result['ci_lower']:.3f}, {pooled_result['ci_upper']:.3f}]"
-        ax.text(0.5, 0.02, pooled_text, transform=ax.transAxes, fontsize=11,
+        pooled_text = (
+            f"Pooled: g = {pooled_result['estimate']:.3f} "
+            f"[{pooled_result['ci_lower']:.3f}, {pooled_result['ci_upper']:.3f}]"
+        )
+        ax.text(0.5, -0.10, pooled_text, transform=ax.transAxes, fontsize=10.5,
                 horizontalalignment='center', fontweight='bold',
                 bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.18), frameon=True)
 
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.06, 1, 1])
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"  Saved: {filename}")
@@ -276,9 +280,9 @@ def create_funnel_plot(effect_sizes, variances, title, filename, pooled_estimate
         print(f"  Skipped funnel plot (insufficient data): {filename}")
         return
 
-    fig, ax = plt.subplots(figsize=(10, 8))
+    fig, ax = plt.subplots(figsize=(11, 8.5))
 
-    ax.scatter(es, se, c='#0072B2', alpha=0.6, s=30)
+    ax.scatter(es, se, c='#0072B2', alpha=0.6, s=35, label=f"Studies (k={len(es)})")
     ax.axvline(pooled_estimate, color='red', linestyle='--', linewidth=2,
                label=f'Pooled estimate = {pooled_estimate:.3f}')
 
@@ -294,10 +298,10 @@ def create_funnel_plot(effect_sizes, variances, title, filename, pooled_estimate
 
     ax.set_xlabel("Effect Size (Hedges' g)", fontsize=12)
     ax.set_ylabel("Standard Error", fontsize=12)
-    ax.set_title(title, fontsize=14, fontweight='bold')
-    ax.legend(loc='upper right')
+    ax.set_title(title, fontsize=14, fontweight='bold', pad=10)
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12), ncol=2, frameon=True)
 
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"  Saved: {filename}")
@@ -590,7 +594,7 @@ def create_comparison_plot(all_results, grouping_col, filename):
     plot_df = pd.DataFrame(data)
 
     # Create figure
-    fig, axes = plt.subplots(1, 3, figsize=(15, max(5, len(all_results) * 0.5)))
+    fig, axes = plt.subplots(1, 3, figsize=(17, max(5.5, len(all_results) * 0.55)))
 
     comparisons = ['Human Aug.', 'AI Aug.', 'Synergy']
     titles = ['HAI vs Human', 'HAI vs AI', 'HAI vs max(H,AI)']
@@ -617,18 +621,23 @@ def create_comparison_plot(all_results, grouping_col, filename):
 
             # Add significance marker
             sig = '***' if row['p_value'] < 0.001 else '**' if row['p_value'] < 0.01 else '*' if row['p_value'] < 0.05 else ''
-            x_pos = row['CI_upper'] + 0.05 if row['g'] >= 0 else row['CI_lower'] - 0.15
-            ax.text(x_pos, i, f"{sig} (k={row['k']})", va='center', fontsize=8)
+            x_margin = 0.06
+            x_pos = row['CI_upper'] + x_margin if row['g'] >= 0 else row['CI_lower'] - x_margin
+            ha = 'left' if row['g'] >= 0 else 'right'
+            ax.text(x_pos, i, f"{sig} (k={row['k']})", va='center', ha=ha, fontsize=8)
 
         ax.axvline(0, color='black', linestyle='--', linewidth=1)
         ax.set_yticks(y_pos)
         ax.set_yticklabels(comp_data['Group'])
         ax.set_xlabel("Hedges' g")
-        ax.set_title(title, fontweight='bold')
-        ax.set_xlim(-1.5, 1.5)
+        ax.set_title(title, fontweight='bold', pad=8)
+        ci_min = comp_data['CI_lower'].min()
+        ci_max = comp_data['CI_upper'].max()
+        pad = max(0.12, 0.08 * (ci_max - ci_min))
+        ax.set_xlim(ci_min - pad, ci_max + pad)
 
     plt.suptitle(f"Meta-Analysis Results by {grouping_col}", fontsize=14, fontweight='bold')
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.02, 1, 0.96])
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"\nSaved comparison plot: {filename}")
