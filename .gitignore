@@ -3,3 +3,5 @@ tests/
 Figures/
 latex/
 old_latex/
+.claude/
+.idea/
