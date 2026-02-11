@@ -1,0 +1,22 @@
+01 — DATA PREPARATION INSIGHTS
+Generated: 2026-02-11 04:39:26
+
+Dataset Overview
+----------------
+- Total effect sizes: 278
+- Unique papers: 67
+- Unique experiments: 90
+- Year range: 2020–2024
+
+Effect Size Summary
+-------------------
+- Strong Synergy: k=278, mean g=-0.514, median g=-0.338
+- Human Augmentation: k=278, mean g=0.540, median g=0.434
+- AI Augmentation: k=278, mean g=0.197, median g=-0.141
+
+Edge Cases
+----------
+- Flagged observations: 219/278
+- SD=0 flags: 206
+- Extreme ES (|g|>3): 30
+- Wide CI flags: 35

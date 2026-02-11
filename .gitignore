@@ -1,0 +1,8 @@
+Analysis/
+tests/
+Figures/
+latex/
+old_latex/
+.claude/
+.idea/
+__pycache__/

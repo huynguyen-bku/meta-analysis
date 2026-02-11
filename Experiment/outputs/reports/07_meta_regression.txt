@@ -1,0 +1,41 @@
+07 — META-REGRESSION INSIGHTS
+Generated: 2026-02-11 04:39:27
+
+Model: Strong Synergy
+---------------------
+- k = 278, predictors = 11
+- Omnibus test: QM(11) = 101.14, p = 0.000000
+- R² = 24.6% of heterogeneity explained
+- Residual τ² = 0.8633
+- Residual QE(266) = 371.7, p = 0.0000
+
+Model: Human Augmentation
+-------------------------
+- k = 278, predictors = 11
+- Omnibus test: QM(11) = 50.02, p = 0.000001
+- R² = 23.1% of heterogeneity explained
+- Residual τ² = 0.1564
+- Residual QE(266) = 388.5, p = 0.0000
+
+Model: AI Augmentation
+----------------------
+- k = 278, predictors = 11
+- Omnibus test: QM(11) = 160.40, p = 0.000000
+- R² = 21.5% of heterogeneity explained
+- Residual τ² = 1.9080
+- Residual QE(266) = 720.6, p = 0.0000
+
+Significant Predictors (p < .05)
+--------------------------------
+- Strong Synergy / Task_TypeCreate: β = +0.723, p = 0.0013
+- Strong Synergy / AI_Type_CleanedRule-Based: β = -1.093, p = 0.0000
+- Strong Synergy / AI_Type_CleanedSimulated-AI: β = -1.365, p = 0.0000
+- Strong Synergy / Year_c: β = +0.320, p = 0.0000
+- Human Augmentation / IndustryCommunication: β = -0.401, p = 0.0071
+- Human Augmentation / Year_c: β = +0.066, p = 0.0213
+- AI Augmentation / IndustryPublic sector: β = -1.772, p = 0.0010
+- AI Augmentation / AI_Type_CleanedRule-Based: β = -2.179, p = 0.0000
+- AI Augmentation / AI_Type_CleanedSimulated-AI: β = -3.138, p = 0.0000
+- AI Augmentation / AI_Type_CleanedWizard of Oz: β = -0.822, p = 0.0129
+- AI Augmentation / Participant_ExpertYes: β = -0.895, p = 0.0311
+- AI Augmentation / Year_c: β = +0.511, p = 0.0000

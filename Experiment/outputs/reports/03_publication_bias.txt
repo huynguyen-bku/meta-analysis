@@ -1,0 +1,29 @@
+03 — PUBLICATION BIAS INSIGHTS
+Generated: 2026-02-11 04:39:27
+
+Strong Synergy
+--------------
+- Egger's test: intercept = 1.930, p = 0.0313 (BIAS DETECTED)
+- Begg's test: tau = 0.185, p = 0.0000 (BIAS DETECTED)
+- Trim-and-fill: 29 missing studies, original = -0.779, adjusted = -0.812
+- Fail-safe N: 376476
+
+Human Augmentation
+------------------
+- Egger's test: intercept = 1.419, p = 0.0001 (BIAS DETECTED)
+- Begg's test: tau = 0.185, p = 0.0000 (BIAS DETECTED)
+- Trim-and-fill: 11 missing studies, original = 0.375, adjusted = 0.356
+- Fail-safe N: 132306
+
+AI Augmentation
+---------------
+- Egger's test: intercept = 4.569, p = 0.0004 (BIAS DETECTED)
+- Begg's test: tau = 0.173, p = 0.0000 (BIAS DETECTED)
+- Trim-and-fill: 14 missing studies, original = -0.445, adjusted = -0.508
+- Fail-safe N: 44576
+
+Conclusion
+----------
+- Publication bias detected in 3/3 comparisons via Egger's test
+- Trim-and-fill adjustments suggest the true effects may be smaller
+- Results should be interpreted with caution given pervasive bias
